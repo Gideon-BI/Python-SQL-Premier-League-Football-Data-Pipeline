@@ -1,0 +1,3 @@
+# Calling the .env here grays out the .env(turns it from green to gray) which means that git is no longer tracking the this particular file.
+# So that means whenever we want to hide sensitive info, we can put those sensitive infos into an .env file and then call that .env file here.
+.env
