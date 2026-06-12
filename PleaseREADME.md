@@ -198,8 +198,9 @@ finally:
 
 ![PowerBI 2024/2025 Premier League Standing Dashboard](assets/PL_BI_Dashboard.png)
 
-🔗 **View the live Dashboard** 
-[Click here to explore the the dashboard](https://app.powerbi.com/view?r=eyJrIjoiY2VlNWQzNDAtZGM0Mi00ZTRkLWJkZmItNDM4MzE2NmJlZDk0IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9)
+🔗 **View the live Dashboard**
+
+[![PowerBI](https://app.powerbi.com/view?r=eyJrIjoiY2VlNWQzNDAtZGM0Mi00ZTRkLWJkZmItNDM4MzE2NmJlZDk0IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9)](assets/PL_BI_Dashboard.png)
 
 
 ## Data Model  
