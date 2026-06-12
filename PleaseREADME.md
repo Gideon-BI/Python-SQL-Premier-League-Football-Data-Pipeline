@@ -299,9 +299,9 @@ SWITCH(
 Status indicator = REPT(UNICHAR(9608),1)
 ```
 
-![PowerBI 2024/2025 Premier League Standing Dashboard](assets/PL_BI_Dashboard.png)
-
 🔗 **View the live Dashboard** 
+
+![PowerBI 2024/2025 Premier League Standing Dashboard](assets/PL_BI_Dashboard.png)
 
 [![View Dashboard](https://img.shields.io/badge/Power%20BI-Live%20Dashboard-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://app.powerbi.com/view?r=eyJrIjoiY2VlNWQzNDAtZGM0Mi00ZTRkLWJkZmItNDM4MzE2NmJlZDk0IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9)
 
