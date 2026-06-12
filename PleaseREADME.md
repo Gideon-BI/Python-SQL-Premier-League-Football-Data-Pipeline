@@ -1,7 +1,7 @@
 # Premier League Standings Data Pipeline (Python + SQL) 
 
 ## OVerview 
-This project builds a simple data pipelie that retrieves English Premier League standings from an external API, processes the data using Python, and stores it in a Microsoft SQL server database for fast access and analytics. 
+This project builds a simple data pipelie that retrieves English Premier League standings from an external API, processes the data using Python, and stores it in a Microsoft SQL server database for fast access and analytics using PowerBI. 
 
 ## Problem Statement 
 On matchdays, users experience delays when trying to view updated league standings due to slow external websites. This project addresses that issue by creating a local, fast-access data pipeline that ensures timely and reliable standings data. 
@@ -190,9 +190,13 @@ finally:
 
     print("All database connections now closed. \n\n Clean up completed.")
 ```
-### MSSQL Server final result output
+### 3. MSSQL Server final result output
 ![MSSQL Server DB Premier League standings](assets/sql_final_result.png)
 
+
+### PowerBI 2024/2025 Premier League Standing Dashboard
+
+![PowerBI 2024/2025 Premier League Standing Dashboard](assets/PL_BI_Dashboard.png)
 ## Data Model  
 Fields Captured;
 -  Season
