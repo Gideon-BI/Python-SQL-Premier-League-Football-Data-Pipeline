@@ -1,4 +1,4 @@
-# Premier League Standings Data Pipeline (Python + SQL) 
+# End-to-End Premier League Standings Data Pipeline (Python + SQL + PowerBI) 
 
 ## OVerview 
 This project builds a simple data pipelie that retrieves English Premier League standings from an external API, processes the data using Python, and stores it in a Microsoft SQL server database for fast access and analytics using PowerBI. 
@@ -194,12 +194,96 @@ finally:
 ![MSSQL Server DB Premier League standings](assets/sql_final_result.png)
 
 
-### PowerBI 2024/2025 Premier League Standing Dashboard
+## PowerBI 2024/2025 Premier League Standing Dashboard
+
+### PowerBI Connection
+
+- Connected MSSQL Server to PowerBI using import mode as the optimal choice. The dataset is relatively small. This enable PowerBI's in-memory engine to deliver much faster performance and full flexibility for DAX calculations.
+
+### PowerBI Features
+
+#### 1. Recent Form Indicators
+
+-   **Purpose:**  Create a visual indicator similar to the official Premier League table, allowing users to identify European qualification and relegation zones at a glance.
+
+-   To replicate the Premier League website's form indicators, I extracted the last five match results and mapped them to colored symbols using `MID()` and `SWITCH()`.
+
+
+```DAX
+
+Form1 Display = 
+SWITCH(
+    MID(standings[form],1,1),
+    "W", "🟢",
+    "D", "⚪",
+    "L", "🔴"
+    )
+```
+The same pattern was repeated for `Form2` through `Form5`, adjusting the `MID()` starting position.
+
+#### 2. Combining the Five Indicators
+
+```DAX 
+Form Display = 
+standings[Form5 Display] & " " & 
+standings[Form4 Display] & " " & 
+standings[Form3 Display] & " " & 
+standings[Form2 Display] & " " & 
+standings[Form1 Display]
+```
+#### 3.  League Qualification Status
+
+##### Status Classification 
+
+```DAX
+League Status = 
+var Pos = standings[League Position]
+
+RETURN
+SWITCH(
+    TRUE(), 
+    Pos >= 1 && Pos <= 5, "Champions League", 
+
+    Pos >= 6 && Pos <=7, "Europa League", 
+
+    Pos =8, "Conference League", 
+
+    Pos >= 18 && Pos <= 20, "Relegated", 
+
+    "No Qualification"
+)
+```
+
+##### Conditional Formatting Colors
+
+```DAX
+
+League Status Color = 
+VAR Pos = standings[position]
+
+RETURN
+SWITCH(
+    TRUE(), 
+    Pos >= 1 && Pos <= 5, "#0047FF",-- Blue
+    
+    Pos >= 6 && Pos <= 7, "#FF6B00", -- "Orange"
+    
+    Pos = 8, "#00B050", --- Green
+
+    Pos >= 18 && Pos <=20, "#FF1678", -- Red
+
+    "#FFFFFF" --- Neutral
+    )
+```
+##### League Status indicator
+
+```DAX
+Status indicator = REPT(UNICHAR(9608),1)
+```
 
 ![PowerBI 2024/2025 Premier League Standing Dashboard](assets/PL_BI_Dashboard.png)
 
 🔗 **View the live Dashboard** 
-### 📊 Live Power BI Dashboard
 
 [![View Dashboard](https://img.shields.io/badge/Power%20BI-Live%20Dashboard-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://app.powerbi.com/view?r=eyJrIjoiY2VlNWQzNDAtZGM0Mi00ZTRkLWJkZmItNDM4MzE2NmJlZDk0IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9)
 
