@@ -1,6 +1,6 @@
 # End-to-End Premier League Standings Data Pipeline (Python + SQL + PowerBI) 
 
-## OVerview 
+## Overview 
 This project builds a simple data pipelie that retrieves English Premier League standings from an external API, processes the data using Python, and stores it in a Microsoft SQL server database for fast access and analytics using PowerBI. 
 
 ## Problem Statement 
@@ -15,6 +15,7 @@ On matchdays, users experience delays when trying to view updated league standin
 -  Python
 -  Microsoft SQL Server
 -  Rest API(API-Football)
+-  PowerBI
 
 ## Data Pipeline Breakdown
 ### 1. Extract
@@ -193,8 +194,25 @@ finally:
 ### 3. MSSQL Server final result output
 ![MSSQL Server DB Premier League standings](assets/sql_final_result.png)
 
+## Data Model  
+Fields Captured;
+-  Season
+-  Position
+-  Team ID
+-  Team ID
+-  Matches Played
+-  Wins / Draws / Losses
+-  Goals For/Against
+-  Goal Difference
+-  Points
+-  Recent Form
 
-## PowerBI 2024/2025 Premier League Standing Dashboard
+## Data Quality Checks
+-  Ensure exactly 20 teams
+-  No missing values
+-  Correct data types (integers for numeric fields)
+
+## PowerBI Dashboard 
 
 ### PowerBI Connection
 
@@ -221,7 +239,7 @@ SWITCH(
 ```
 The same pattern was repeated for `Form2` through `Form5`, adjusting the `MID()` starting position.
 
-#### 2. Combining the Five Indicators
+**Combining the Five Indicators:**
 
 ```DAX 
 Form Display = 
@@ -231,9 +249,9 @@ standings[Form3 Display] & " " &
 standings[Form2 Display] & " " & 
 standings[Form1 Display]
 ```
-#### 3.  League Qualification Status
+#### 2.  League Qualification Status
 
-##### Status Classification 
+-   **Status Classification:**
 
 ```DAX
 League Status = 
@@ -254,7 +272,7 @@ SWITCH(
 )
 ```
 
-##### Conditional Formatting Colors
+-   **Conditional Formatting Colors:**
 
 ```DAX
 
@@ -275,7 +293,7 @@ SWITCH(
     "#FFFFFF" --- Neutral
     )
 ```
-##### League Status indicator
+-   **League Status indicator:**
 
 ```DAX
 Status indicator = REPT(UNICHAR(9608),1)
@@ -287,24 +305,6 @@ Status indicator = REPT(UNICHAR(9608),1)
 
 [![View Dashboard](https://img.shields.io/badge/Power%20BI-Live%20Dashboard-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)](https://app.powerbi.com/view?r=eyJrIjoiY2VlNWQzNDAtZGM0Mi00ZTRkLWJkZmItNDM4MzE2NmJlZDk0IiwidCI6IjI1Y2UwMjYxLWJiZDYtNDljZC1hMWUyLTU0MjYwODg2ZDE1OSJ9)
 
-
-## Data Model  
-Fields Captured;
--  Season
--  Position
--  Team ID
--  Team ID
--  Matches Played
--  Wins / Draws / Losses
--  Goals For/Against
--  Goal Difference
--  Points
--  Recent Form
-
-## Data Quality Checks
--  Ensure exactly 20 teams
--  No missing values
--  Correct data types (integers for numeric fields)
 
 ## Approach & Though Process 
 - Broke down the problem into Extract, Transform, Load stages
